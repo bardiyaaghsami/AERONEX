@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 566" width="1000" height="566" role="img" aria-labelledby="t d">
+<title id="t">AERONEX technical architecture, Experiment 01</title>
+<desc id="d">Gazebo Harmonic and PX4 SITL; simulated 3D LiDAR, RGB-D and IMU; recorded dataset and ground truth; offline replay into FAST-LIVO2, RTAB-Map and R3LIVE (did not complete); trajectory and 3D map evaluation; ground truth used for evaluation only. Planned: autonomous navigation, height-drift mitigation.</desc>
+<defs>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#B8BDC7"/></marker>
+<marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E97F22"/></marker>
+
+</defs>
+<rect width="1000" height="566" rx="14" fill="#101113"/>
+<text x="36" y="44" fill="#E97F22" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13" font-weight="600" text-anchor="start" letter-spacing="2.2">EXPERIMENT 01 · DOCUMENTED COMPONENTS AND DATA FLOW</text>
+<g transform="translate(0 -34)">
+<text x="36" y="128" fill="#E97F22" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="700" text-anchor="start">01</text>
+<text x="64" y="128" fill="#B8BDC7" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="600" text-anchor="start" letter-spacing="1.8">SIMULATE</text>
+<path d="M36 140H202" stroke="#2E343B" stroke-width="2"/>
+<text x="218" y="128" fill="#E97F22" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="700" text-anchor="start">02</text>
+<text x="246" y="128" fill="#B8BDC7" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="600" text-anchor="start" letter-spacing="1.8">SENSE</text>
+<path d="M218 140H384" stroke="#2E343B" stroke-width="2"/>
+<text x="400" y="128" fill="#E97F22" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="700" text-anchor="start">03</text>
+<text x="428" y="128" fill="#B8BDC7" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="600" text-anchor="start" letter-spacing="1.8">RECORD</text>
+<path d="M400 140H566" stroke="#2E343B" stroke-width="2"/>
+<text x="582" y="128" fill="#E97F22" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="700" text-anchor="start">04</text>
+<text x="610" y="128" fill="#B8BDC7" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="600" text-anchor="start" letter-spacing="1.8">ESTIMATE</text>
+<path d="M582 140H748" stroke="#2E343B" stroke-width="2"/>
+<text x="782" y="128" fill="#E97F22" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="700" text-anchor="start">05</text>
+<text x="810" y="128" fill="#B8BDC7" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="600" text-anchor="start" letter-spacing="1.8">EVALUATE</text>
+<path d="M782 140H964" stroke="#2E343B" stroke-width="2"/>
+<rect x="36" y="160" width="166" height="78" rx="8" fill="#1B1F24" stroke="#2E343B"/>
+<rect x="36" y="172" width="3" height="54" rx="1.5" fill="#E97F22"/>
+<text x="52" y="187" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Gazebo</text>
+<text x="52" y="207" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">Harmonic</text>
+<text x="52" y="225" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">warehouse world</text>
+<rect x="36" y="290" width="166" height="70" rx="8" fill="#1B1F24" stroke="#2E343B"/>
+<text x="52" y="322" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">PX4 SITL</text>
+<text x="52" y="343" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">flight stack</text>
+<path d="M119 236V288" fill="none" stroke="#B8BDC7" stroke-opacity="0.75" stroke-width="1.4" marker-end="url(#ar)"/>
+<path d="M119 288V236" fill="none" stroke="#B8BDC7" stroke-opacity="0.75" stroke-width="1.4" marker-end="url(#ar)"/>
+<text x="128" y="268" fill="#B8BDC7" fill-opacity="0.8" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="12" font-weight="400" text-anchor="start">vehicle</text>
+<rect x="218" y="164" width="166" height="58" rx="8" fill="#1B1F24" stroke="#2E343B"/>
+<text x="234" y="199" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">3D LiDAR</text>
+<path d="M202 199H210V193H216" fill="none" stroke="#B8BDC7" stroke-opacity="0.75" stroke-width="1.4" marker-end="url(#ar)"/>
+<path d="M384 193H392V206H398" fill="none" stroke="#B8BDC7" stroke-opacity="0.75" stroke-width="1.4" marker-end="url(#ar)"/>
+<rect x="218" y="242" width="166" height="58" rx="8" fill="#1B1F24" stroke="#2E343B"/>
+<text x="234" y="277" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">RGB-D camera</text>
+<path d="M202 199H210V271H216" fill="none" stroke="#B8BDC7" stroke-opacity="0.75" stroke-width="1.4" marker-end="url(#ar)"/>
+<path d="M384 271H392V206H398" fill="none" stroke="#B8BDC7" stroke-opacity="0.75" stroke-width="1.4" marker-end="url(#ar)"/>
+<rect x="218" y="320" width="166" height="58" rx="8" fill="#1B1F24" stroke="#2E343B"/>
+<text x="234" y="355" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">IMU</text>
+<path d="M202 199H210V349H216" fill="none" stroke="#B8BDC7" stroke-opacity="0.75" stroke-width="1.4" marker-end="url(#ar)"/>
+<path d="M384 349H392V206H398" fill="none" stroke="#B8BDC7" stroke-opacity="0.75" stroke-width="1.4" marker-end="url(#ar)"/>
+<rect x="400" y="172" width="166" height="70" rx="8" fill="#1B1F24" stroke="#2E343B"/>
+<rect x="400" y="184" width="3" height="46" rx="1.5" fill="#E97F22"/>
+<text x="416" y="204" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Dataset</text>
+<text x="416" y="225" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">≈ 41 GB · 405.33 s</text>
+<rect x="400" y="304" width="166" height="70" rx="8" fill="#1B1F24" stroke="#2E343B"/>
+<text x="416" y="336" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Ground truth</text>
+<text x="416" y="357" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">396.15 m path</text>
+<path d="M36 199H22V408H483V376" fill="none" stroke="#B8BDC7" stroke-opacity="0.75" stroke-width="1.4" marker-end="url(#ar)"/>
+<text x="36" y="400" fill="#B8BDC7" fill-opacity="0.8" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="12" font-weight="400" text-anchor="start">model pose from Gazebo</text>
+<rect x="582" y="164" width="184" height="64" rx="8" fill="#1B1F24" stroke="#2E343B"/>
+<text x="598" y="193" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">FAST-LIVO2</text>
+<text x="598" y="214" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">LiDAR · IMU · RGB</text>
+<path d="M566 207H574V196H580" fill="none" stroke="#B8BDC7" stroke-opacity="0.75" stroke-width="1.4" marker-end="url(#ar)"/>
+<path d="M766 196H774V220H780" fill="none" stroke="#B8BDC7" stroke-opacity="0.75" stroke-width="1.4" marker-end="url(#ar)"/>
+<rect x="582" y="242" width="184" height="64" rx="8" fill="#1B1F24" stroke="#2E343B"/>
+<text x="598" y="271" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">RTAB-Map</text>
+<text x="598" y="292" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">L+RGB-D · RGB-D</text>
+<path d="M566 207H574V274H580" fill="none" stroke="#B8BDC7" stroke-opacity="0.75" stroke-width="1.4" marker-end="url(#ar)"/>
+<path d="M766 274H774V220H780" fill="none" stroke="#B8BDC7" stroke-opacity="0.75" stroke-width="1.4" marker-end="url(#ar)"/>
+<rect x="582" y="320" width="184" height="64" rx="8" fill="#101113" stroke="#2E343B"/>
+<text x="598" y="349" fill="#B8BDC7" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">R3LIVE</text>
+<text x="598" y="370" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">did not complete</text>
+<path d="M566 207H574V352H580" fill="none" stroke="#B8BDC7" stroke-opacity="0.75" stroke-width="1.4" marker-end="url(#ar)"/>
+<text x="486" y="160" fill="#B8BDC7" fill-opacity="0.8" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="12" font-weight="400" text-anchor="start">replay</text>
+<rect x="782" y="182" width="182" height="76" rx="8" fill="#1B1F24" stroke="#2E343B"/>
+<rect x="782" y="194" width="3" height="52" rx="1.5" fill="#E97F22"/>
+<text x="798" y="217" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">Trajectory</text>
+<text x="798" y="238" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">ATE · horiz. / vert.</text>
+<rect x="782" y="290" width="182" height="80" rx="8" fill="#1B1F24" stroke="#2E343B"/>
+<rect x="782" y="302" width="3" height="56" rx="1.5" fill="#E97F22"/>
+<text x="798" y="318" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start">3D map</text>
+<text x="798" y="338" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">accuracy</text>
+<text x="798" y="356" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">obs. completeness</text>
+<path d="M873 260V288" fill="none" stroke="#B8BDC7" stroke-opacity="0.75" stroke-width="1.4" marker-end="url(#ar)"/>
+<path d="M566 352H574V438H873V370" fill="none" stroke="#E97F22" stroke-width="1.8" marker-end="url(#ao)"/>
+<text x="586" y="430" fill="#E97F22" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="12.5" font-weight="600" text-anchor="start">ground truth → evaluation only</text>
+<rect x="218" y="470" width="746" height="40" rx="8" fill="#1B1F24" stroke="#2E343B"/>
+<text x="236" y="495" fill="#E97F22" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13" font-weight="700" text-anchor="start" letter-spacing="2">ROS 2 JAZZY</text>
+<text x="356" y="495" fill="#B8BDC7" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="14.5" font-weight="400" text-anchor="start">sensor data, dataset recording and replay</text>
+<text x="36" y="556" fill="#B8BDC7" fill-opacity="0.85" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="12" font-weight="600" text-anchor="start" letter-spacing="2">PLANNED</text>
+<rect x="218" y="534" width="360" height="46" rx="8" fill="none" stroke="#B8BDC7" stroke-opacity="0.55" stroke-dasharray="5 5"/>
+<text x="234" y="563" fill="#B8BDC7" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="start">Autonomous navigation</text>
+<rect x="604" y="534" width="360" height="46" rx="8" fill="none" stroke="#B8BDC7" stroke-opacity="0.55" stroke-dasharray="5 5"/>
+<text x="620" y="563" fill="#B8BDC7" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="start">Height-drift mitigation</text>
+</g>
+<rect x="0.5" y="0.5" width="999" height="565" rx="13.5" fill="none" stroke="#2E343B"/>
+</svg>

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 536" width="1000" height="536" role="img" aria-labelledby="t d">
+<title id="t">AERONEX development milestones</title>
+<desc id="d">Implemented and evaluated: simulation environment, sensor integration, PX4 simulation infrastructure, dataset recording, multi-SLAM benchmarking, 3D mapping evaluation. Planned or research, not existing functionality: autonomous navigation, height-drift mitigation, fly-brain-inspired neural planning, MuJoCo, NVIDIA Isaac Sim, VLM, VLA.</desc>
+<defs>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#B8BDC7"/></marker>
+<marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E97F22"/></marker>
+
+</defs>
+<rect width="1000" height="536" rx="14" fill="#101113"/>
+<text x="36" y="44" fill="#E97F22" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13" font-weight="600" text-anchor="start" letter-spacing="2.2">EVIDENCE FIRST: DELIVERED WORK AND THE RESEARCH QUEUE</text>
+<g transform="translate(0 -34)">
+<rect x="36" y="104" width="446" height="362" rx="10" fill="#1B1F24" stroke="#2E343B"/>
+<text x="56" y="132" fill="#E97F22" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="12.5" font-weight="700" text-anchor="start" letter-spacing="2">IMPLEMENTED / EVALUATED</text>
+<text x="462" y="132" fill="#B8BDC7" fill-opacity="0.85" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="12" font-weight="400" text-anchor="end">Experiment 01 evidence</text>
+<circle cx="70" cy="175" r="12" fill="#101113" stroke="#E97F22" stroke-width="2.2"/>
+<path d="M65 175L68.5 179L76 170.5" fill="none" stroke="#E97F22" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M70 188V212" stroke="#E97F22" stroke-opacity="1" stroke-width="2"/>
+<text x="96" y="172" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="600" text-anchor="start">Simulation environment</text>
+<text x="96" y="192" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">Gazebo Harmonic · dynamic warehouse</text>
+<circle cx="70" cy="225" r="12" fill="#101113" stroke="#E97F22" stroke-width="2.2"/>
+<path d="M65 225L68.5 229L76 220.5" fill="none" stroke="#E97F22" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M70 238V262" stroke="#E97F22" stroke-opacity="1" stroke-width="2"/>
+<text x="96" y="222" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="600" text-anchor="start">Sensor integration</text>
+<text x="96" y="242" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">3D LiDAR · RGB-D · IMU</text>
+<circle cx="70" cy="275" r="12" fill="#101113" stroke="#E97F22" stroke-width="2.2"/>
+<path d="M65 275L68.5 279L76 270.5" fill="none" stroke="#E97F22" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M70 288V312" stroke="#E97F22" stroke-opacity="1" stroke-width="2"/>
+<text x="96" y="272" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="600" text-anchor="start">PX4 simulation infrastructure</text>
+<text x="96" y="292" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">PX4 SITL</text>
+<circle cx="70" cy="325" r="12" fill="#101113" stroke="#E97F22" stroke-width="2.2"/>
+<path d="M65 325L68.5 329L76 320.5" fill="none" stroke="#E97F22" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M70 338V362" stroke="#E97F22" stroke-opacity="1" stroke-width="2"/>
+<text x="96" y="322" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="600" text-anchor="start">Dataset recording</text>
+<text x="96" y="342" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">≈ 41 GB with ground truth</text>
+<circle cx="70" cy="375" r="12" fill="#101113" stroke="#E97F22" stroke-width="2.2"/>
+<path d="M65 375L68.5 379L76 370.5" fill="none" stroke="#E97F22" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M70 388V412" stroke="#E97F22" stroke-opacity="1" stroke-width="2"/>
+<text x="96" y="372" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="600" text-anchor="start">Multi-SLAM benchmarking</text>
+<text x="96" y="392" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">FAST-LIVO2 · RTAB-Map · R3LIVE</text>
+<circle cx="70" cy="425" r="12" fill="#101113" stroke="#E97F22" stroke-width="2.2"/>
+<path d="M65 425L68.5 429L76 420.5" fill="none" stroke="#E97F22" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="96" y="422" fill="#F5F7FA" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="600" text-anchor="start">3D mapping evaluation</text>
+<text x="96" y="442" fill="#B8BDC7" fill-opacity="0.9" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">RTAB-Map observed-map metrics</text>
+<rect x="518" y="104" width="446" height="412" rx="10" fill="#101113" stroke="#2E343B"/>
+<text x="538" y="132" fill="#B8BDC7" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="12.5" font-weight="700" text-anchor="start" letter-spacing="2">PLANNED / RESEARCH</text>
+<text x="944" y="132" fill="#B8BDC7" fill-opacity="0.85" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="12" font-weight="400" text-anchor="end">no validated result yet</text>
+<circle cx="552" cy="175" r="11" fill="none" stroke="#B8BDC7" stroke-opacity="0.7" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path d="M552 188V212" stroke="#B8BDC7" stroke-opacity="0.4" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="578" y="172" fill="#B8BDC7" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="600" text-anchor="start">Autonomous navigation</text>
+<text x="578" y="192" fill="#B8BDC7" fill-opacity="0.78" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">planning · obstacle avoidance</text>
+<circle cx="552" cy="225" r="11" fill="none" stroke="#B8BDC7" stroke-opacity="0.7" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path d="M552 238V262" stroke="#B8BDC7" stroke-opacity="0.4" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="578" y="222" fill="#B8BDC7" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="600" text-anchor="start">Height-drift mitigation</text>
+<text x="578" y="242" fill="#B8BDC7" fill-opacity="0.78" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">ICP Force4DoF · barometric fusion</text>
+<circle cx="552" cy="275" r="11" fill="none" stroke="#B8BDC7" stroke-opacity="0.7" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path d="M552 288V312" stroke="#B8BDC7" stroke-opacity="0.4" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="578" y="272" fill="#B8BDC7" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="600" text-anchor="start">Fly-brain-inspired neural planning</text>
+<text x="578" y="292" fill="#B8BDC7" fill-opacity="0.78" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">research</text>
+<circle cx="552" cy="325" r="11" fill="none" stroke="#B8BDC7" stroke-opacity="0.7" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path d="M552 338V362" stroke="#B8BDC7" stroke-opacity="0.4" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="578" y="322" fill="#B8BDC7" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="600" text-anchor="start">MuJoCo</text>
+<text x="578" y="342" fill="#B8BDC7" fill-opacity="0.78" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">dynamics · learning-based control</text>
+<circle cx="552" cy="375" r="11" fill="none" stroke="#B8BDC7" stroke-opacity="0.7" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path d="M552 388V412" stroke="#B8BDC7" stroke-opacity="0.4" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="578" y="372" fill="#B8BDC7" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="600" text-anchor="start">NVIDIA Isaac Sim</text>
+<text x="578" y="392" fill="#B8BDC7" fill-opacity="0.78" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">simulation · synthetic data</text>
+<circle cx="552" cy="425" r="11" fill="none" stroke="#B8BDC7" stroke-opacity="0.7" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path d="M552 438V462" stroke="#B8BDC7" stroke-opacity="0.4" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="578" y="422" fill="#B8BDC7" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="600" text-anchor="start">VLM</text>
+<text x="578" y="442" fill="#B8BDC7" fill-opacity="0.78" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">semantic mission planning</text>
+<circle cx="552" cy="475" r="11" fill="none" stroke="#B8BDC7" stroke-opacity="0.7" stroke-width="1.5" stroke-dasharray="3 3"/>
+<text x="578" y="472" fill="#B8BDC7" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="600" text-anchor="start">VLA</text>
+<text x="578" y="492" fill="#B8BDC7" fill-opacity="0.78" font-family="SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace" font-size="13.5" font-weight="400" text-anchor="start">vision-language-conditioned actions</text>
+<text x="36" y="552" fill="#B8BDC7" fill-opacity="0.85" font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start">Planned and research items describe intended work, not existing functionality. Details: ROADMAP.md</text>
+</g>
+<rect x="0.5" y="0.5" width="999" height="535" rx="13.5" fill="none" stroke="#2E343B"/>
+</svg>

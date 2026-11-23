@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="385" height="56" viewBox="0 0 385 56" role="img" aria-label="Explore 3D Reconstruction">
+<rect x="0.5" y="0.5" width="384" height="55" fill="#1B1F24" stroke="#2E343B"/>
+<rect x="0" y="0" width="385" height="3" fill="#E97F22"/>
+<g fill="#E97F22"><circle cx="24" cy="34" r="1.8"/><circle cx="29" cy="30" r="1.8"/><circle cx="33" cy="35" r="1.8"/><circle cx="37" cy="24" r="1.8"/><circle cx="28" cy="22" r="1.8"/><circle cx="40" cy="31" r="1.8"/><circle cx="33" cy="27" r="1.8"/><circle cx="22" cy="26" r="1.8"/></g>
+<text x="58" y="34" fill="#F5F7FA" font-family="'Ubuntu Sans Mono','DejaVu Sans Mono',Consolas,'Courier New',monospace" font-size="15" font-weight="700" letter-spacing="1.6">EXPLORE 3D RECONSTRUCTION</text>
+<path d="M355 22 l7 6 l-7 6" fill="none" stroke="#E97F22" stroke-width="2.4"/>
+</svg>

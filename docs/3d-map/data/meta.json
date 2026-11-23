@@ -1,0 +1,57 @@
+{
+ "title": "AERONEX Experiment 01: RTAB-Map LiDAR+RGB-D run 1 reconstructed map",
+ "nature": "Static visualisation of an exported SLAM point cloud. Not a live simulation.",
+ "source_map": {
+  "file": "map_cloud.ply",
+  "points": 4304293,
+  "frame": "RTAB-Map map frame (metres, z up)",
+  "sha256": "d28015aa53d64dab73d1170725158eff7f5093c8ec6a84fd6363f5497c3a2178"
+ },
+ "downsampling": {
+  "method": "voxel-grid centroid (one point per occupied voxel, mean of the original points); normal = normalised mean of sign-aligned normals",
+  "voxel_m": 0.15,
+  "points": 737847,
+  "fraction_of_source": 0.1714,
+  "source_points_per_voxel": {
+   "min": 1,
+   "median": 4.0,
+   "max": 27
+  },
+  "point_order": "random permutation (seed 7); any prefix is a uniform subsample"
+ },
+ "encoding": {
+  "layout": "N x int16[3] positions, then N x int8[3] normals (little endian)",
+  "count": 737847,
+  "quant_m": 0.005,
+  "origin": [
+   -41.195,
+   -36.07,
+   -3.19
+  ],
+  "max_quantisation_error_m": 0.0025,
+  "bytes": 6640623
+ },
+ "bounds": {
+  "min": [
+   -41.192,
+   -36.067,
+   -3.188
+  ],
+  "max": [
+   22.446,
+   6.535,
+   14.551
+  ],
+  "floor_z_p5": -0.704
+ },
+ "alignment_used_for_gt": {
+  "from": "benchmark eval.json, trajectories.final.alignment (Umeyama SE(3), no scale)",
+  "R_deg": 89.9706859742055,
+  "t_m": [
+   -0.9694610368499958,
+   30.337746595795288,
+   0.4975325242087776
+  ]
+ },
+ "trajectory_display_resampling": "odometry and ground truth thinned to poses >= 0.10 m apart; optimised keyframes all kept"
+}

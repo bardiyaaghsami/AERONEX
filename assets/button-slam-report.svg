@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="416" height="56" viewBox="0 0 416 56" role="img" aria-label="Open Interactive Slam Report">
+<rect x="0.5" y="0.5" width="415" height="55" fill="#1B1F24" stroke="#2E343B"/>
+<rect x="0" y="0" width="416" height="3" fill="#E97F22"/>
+<rect x="22" y="31" width="4" height="8" fill="#E97F22"/><rect x="29" y="25" width="4" height="14" fill="#E97F22"/><rect x="36" y="19" width="4" height="20" fill="#E97F22"/>
+<text x="58" y="34" fill="#F5F7FA" font-family="'Ubuntu Sans Mono','DejaVu Sans Mono',Consolas,'Courier New',monospace" font-size="15" font-weight="700" letter-spacing="1.6">OPEN INTERACTIVE SLAM REPORT</text>
+<path d="M386 22 l7 6 l-7 6" fill="none" stroke="#E97F22" stroke-width="2.4"/>
+</svg>

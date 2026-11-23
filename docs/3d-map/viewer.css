@@ -1,0 +1,48 @@
+:root{--o:#E97F22;--o2:#F48120;--k:#101113;--g1:#1B1F24;--g2:#2E343B;--g3:#B8BDC7;--w:#F5F7FA}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--k);color:var(--w);font:14px/1.45 system-ui,-apple-system,'Segoe UI',Ubuntu,sans-serif;overflow:hidden}
+a{color:var(--o2)} a:hover{color:#ffb070}
+.ax-bar{position:fixed;inset:0 0 auto 0;height:48px;z-index:5;background:var(--k);border-bottom:2px solid var(--o);display:flex;align-items:center;gap:20px;padding:0 22px}
+.ax-bar b{letter-spacing:.22em;font-size:15px;white-space:nowrap} .ax-bar b i{display:inline-block;width:9px;height:9px;background:var(--o);margin-right:10px}
+.ax-bar .ax-title{color:var(--g3);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ax-bar .sp{flex:1}
+.ax-bar a{color:var(--g3);text-decoration:none;font-size:13px;white-space:nowrap} .ax-bar a:hover,.ax-bar a:focus{color:var(--o2)}
+#stage{position:fixed;inset:48px 0 0 0}
+#gl{display:block;width:100%;height:100%;cursor:grab;outline:none;touch-action:none}
+#gl.drag{cursor:grabbing}
+#status{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);background:var(--g1);border:1px solid var(--g2);border-left:4px solid var(--o);padding:12px 18px;max-width:min(560px,90vw);color:var(--w)}
+#status.hide{display:none}
+#status.err{border-left-color:#c0392b}
+#panel{position:absolute;top:14px;left:14px;width:318px;max-height:calc(100% - 28px);overflow:auto;background:rgba(27,31,36,.94);border:1px solid var(--g2);border-top:3px solid var(--o);padding:14px 16px 12px}
+#panel h1{font-size:16px;letter-spacing:.06em;margin:0;text-transform:uppercase}
+.ph{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 6px}
+#b-panel{flex:0 0 auto;padding:3px 9px;font-size:11.5px}
+#panel.collapsed #pbody{display:none} #panel.collapsed .ph{margin:0}
+.nature{color:var(--g3);font-size:12.5px;margin:0 0 10px}
+.tag{display:inline-block;font:700 10.5px/1 ui-monospace,'Ubuntu Sans Mono',monospace;letter-spacing:.12em;color:var(--k);background:var(--o);padding:3px 5px;margin-right:4px}
+fieldset{border:0;border-top:1px solid var(--g2);margin:8px 0 0;padding:8px 0 2px}
+legend{font:700 11px ui-monospace,'Ubuntu Sans Mono',monospace;letter-spacing:.14em;color:var(--g3);text-transform:uppercase;padding:0 6px 0 0}
+fieldset label{display:block;margin:5px 0;cursor:pointer;font-size:13px}
+fieldset label small{display:block;margin-left:44px;color:var(--g3);font-size:11.5px}
+input[type=checkbox]{accent-color:var(--o);vertical-align:middle}
+.sw{display:inline-block;width:18px;height:4px;vertical-align:middle;margin:0 4px 0 2px}
+.sw-map{height:10px;background:linear-gradient(90deg,#2E343B,#B8BDC7,#F5F7FA)}
+.sw-opt{background:var(--o)} .sw-odo{background:repeating-linear-gradient(90deg,#F5F7FA 0 4px,transparent 4px 7px)} .sw-gt{background:#B8BDC7;height:2px}
+.rng{display:grid;grid-template-columns:1fr auto;gap:2px 8px;font-size:12.5px;color:var(--g3)}
+.rng input{grid-column:1/3;width:100%;accent-color:var(--o)}
+output{color:var(--w);font:12px ui-monospace,'Ubuntu Sans Mono',monospace}
+.btns{display:flex;gap:6px;margin:12px 0 6px;flex-wrap:wrap}
+button{flex:1;background:var(--g2);color:var(--w);border:1px solid #444b54;padding:7px 8px;font:600 12.5px system-ui,sans-serif;cursor:pointer}
+button:hover,button:focus-visible{border-color:var(--o);outline:none} button[aria-pressed=true]{background:var(--o);color:var(--k);border-color:var(--o)}
+details{border-top:1px solid var(--g2);margin-top:8px;padding-top:6px;font-size:12.5px;color:var(--g3)}
+summary{cursor:pointer;color:var(--w);font-weight:600} details p{margin:7px 0} code{color:var(--w)}
+.keys{margin:6px 0;padding-left:16px} .keys b{color:var(--w)}
+#scale{position:absolute;right:18px;bottom:16px;color:var(--g3);font:12px ui-monospace,monospace;text-align:center;pointer-events:none}
+#scale span{display:block;height:6px;border:2px solid var(--g3);border-top:0;margin-bottom:3px}
+.nojs{position:fixed;top:60px;left:20px}
+@media (max-width:700px){
+  .ax-bar .ax-title,.ax-bar a:nth-of-type(4){display:none}
+  .ax-bar{gap:12px;padding:0 12px}
+  #panel{top:auto;bottom:0;left:0;right:0;width:auto;max-height:46%;border-left:0;border-right:0}
+  #scale{top:12px;bottom:auto}
+}
