@@ -39,6 +39,19 @@
     </fieldset>
 
     <fieldset>
+      <legend>Colour mode</legend>
+      <div class="seg" role="radiogroup" aria-label="Colour mode">
+        <label><input type="radio" name="cmode" id="c-height" value="height" checked> Height gradient</label>
+        <label><input type="radio" name="cmode" id="c-mono" value="mono"> Monochrome</label>
+      </div>
+      <div id="legend" aria-label="Height colour legend">
+        <div class="bar" id="legend-bar"></div>
+        <div class="ticks" id="legend-ticks"></div>
+        <small id="legend-note"></small>
+      </div>
+    </fieldset>
+
+    <fieldset>
       <legend>Display</legend>
       <label class="rng">Height cut <output id="o-clip"></output><input type="range" id="clip" min="0" max="100" value="62"></label>
       <label class="rng">Point size <output id="o-size"></output><input type="range" id="size" min="40" max="300" value="100"></label>
@@ -63,7 +76,7 @@
       <summary>About this data</summary>
       <p>Source: <code>map_cloud.ply</code> exported by RTAB-Map after LiDAR+RGB-D run 1 (4,304,293 points). Shown here as
         <span id="m-pts">737,847</span> voxel-centroid points (0.15 m voxels) in the original RTAB-Map <code>map</code> frame,
-        metres, z up. Colour encodes height only (the export has no colour).</p>
+        metres, z up. Point colour encodes height only (the export has no colour): a Turbo-style elevation gradient, or monochrome grey.</p>
       <p>The <b>optimised trajectory</b> is RTAB-Map's pose graph after the run, at keyframes; it uses loop closures and later
         information, so it is not online localisation. Its keyframe ATE is ≈ 0.082 m.</p>
       <p><b>Online odometry</b> is drawn as published, in RTAB-Map's odom frame. That frame coincides with the map frame at the start,

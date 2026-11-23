@@ -40,11 +40,20 @@
   }
 
   // ------------------------------------------------------------------ shaders
+  var TURBO_LO = 0.80, TURBO_HI = 0.06, HGRAD_M = 6.0;   // gradient: 0 m above floor -> Turbo 0.80, HGRAD_M -> Turbo 0.06
   var MAP_VS = [
     'attribute vec3 aQ; attribute vec3 aN;',
     'uniform mat4 uMVP; uniform vec3 uEye; uniform vec3 uOrigin; uniform float uQuant;',
     'uniform float uSize; uniform float uProj; uniform float uCut; uniform float uFloor; uniform float uTop; uniform float uFog;',
+    'uniform float uMode; uniform float uHTop;',
     'varying vec3 vC;',
+    // Turbo colormap, polynomial approximation (Turbo: Copyright 2019 Google LLC, Apache-2.0)
+    'vec3 turbo(float x){',
+    '  x = clamp(x, 0.0, 1.0); vec4 v4 = vec4(1.0, x, x * x, x * x * x); vec2 v2 = v4.zw * v4.z;',
+    '  return clamp(vec3(dot(v4, vec4(0.13572138, 4.61539260, -42.66032258, 132.13108234)) + dot(v2, vec2(-152.94239396, 59.28637943)),',
+    '                    dot(v4, vec4(0.09140261, 2.19418839, 4.84296658, -14.18503333)) + dot(v2, vec2(4.27729857, 2.82956604)),',
+    '                    dot(v4, vec4(0.10667330, 12.64194608, -60.58204836, 110.36276771)) + dot(v2, vec2(-89.90310912, 27.34824973))), 0.0, 1.0);',
+    '}',
     'void main(){',
     '  vec3 p = uOrigin + aQ * uQuant;',
     '  if (p.z > uCut) { gl_Position = vec4(2.0, 2.0, 2.0, 1.0); gl_PointSize = 0.0; return; }',
@@ -55,6 +64,8 @@
     '  vec3 a = vec3(0.180,0.204,0.231), b = vec3(0.722,0.741,0.780), w = vec3(0.961,0.969,0.980);',
     '  vec3 col = t < 0.6 ? mix(a, b, t / 0.6) : mix(b, w, (t - 0.6) / 0.4);',
     '  if (p.z < uFloor + 0.18) col = vec3(0.235,0.259,0.286);',
+    // height gradient: floor (orange/yellow) -> mid (green/cyan) -> top (blue/purple); same Z, same cut
+    '  if (uMode > 0.5) { float h = clamp((p.z - uFloor) / (uHTop - uFloor), 0.0, 1.0); col = turbo(' + TURBO_LO.toFixed(3) + ' - ' + (TURBO_LO - TURBO_HI).toFixed(3) + ' * h); if (p.z < uFloor + 0.18) col *= 0.42; }',
     '  vec3 n = aN / 127.0; vec3 L = normalize(vec3(0.35, 0.55, 0.76));',
     '  float sh = 0.58 + 0.42 * abs(dot(normalize(n + 1e-5), L));',
     '  float fog = clamp((length(p - uEye) - uFog) / (uFog * 2.2), 0.0, 0.55);',
@@ -91,7 +102,7 @@
   var PATH_STYLE = {
     optimised: { el: 'l-opt', col: [0.914, 0.498, 0.133], px: 4.5, dash: 0 },
     odometry: { el: 'l-odo', col: [0.961, 0.969, 0.980], px: 3.2, dash: 0.9 },
-    gt: { el: 'l-gt', col: [0.722, 0.741, 0.780], px: 2.6, dash: 0 }
+    gt: { el: 'l-gt', col: [0.608, 0.906, 0.949], px: 3.0, dash: 0 }
   };
   var FOV = 50 * Math.PI / 180;
   var cam = { tgt: [0, 0, 0], yaw: 0, pitch: 0, dist: 50 };
@@ -163,6 +174,7 @@
     $('npts').textContent = N.toLocaleString('en') + ' pts';
     $('m-pts').textContent = N.toLocaleString('en');
     updateLabels();
+    updateLegend();
     hideStatus();
     requestAnimationFrame(frame);
   }).catch(function (e) { status('Could not load the map data: ' + e.message, true); console.error(e); });
@@ -192,6 +204,7 @@
       gl.uniform1f(u.uSize, meta.downsampling.voxel_m * sizeSlider.value / 100 * 0.85);
       gl.uniform1f(u.uProj, H / (2 * Math.tan(FOV / 2)));
       gl.uniform1f(u.uCut, cut); gl.uniform1f(u.uFloor, fl); gl.uniform1f(u.uTop, fl + 7.5); gl.uniform1f(u.uFog, cam.dist);
+      gl.uniform1f(u.uMode, colourMode() === 'height' ? 1 : 0); gl.uniform1f(u.uHTop, fl + HGRAD_M);
       var aQ = gl.getAttribLocation(mapProg.p, 'aQ'), aN = gl.getAttribLocation(mapProg.p, 'aN');
       gl.bindBuffer(gl.ARRAY_BUFFER, bufQ); gl.enableVertexAttribArray(aQ); gl.vertexAttribPointer(aQ, 3, gl.SHORT, false, 0, 0);
       gl.bindBuffer(gl.ARRAY_BUFFER, bufN); gl.enableVertexAttribArray(aN); gl.vertexAttribPointer(aN, 3, gl.BYTE, false, 0, 0);
@@ -203,12 +216,16 @@
       var st = PATH_STYLE[k], p = paths[k];
       if (!p || !$(st.el).checked) return;
       gl.useProgram(pathProg.p); var u = pathProg.u;
-      gl.uniformMatrix4fv(u.uMVP, false, mvp); gl.uniform1f(u.uPx, st.px * dpr); gl.uniform1f(u.uDash, st.dash); gl.uniform3fv(u.uCol, st.col);
+      gl.uniformMatrix4fv(u.uMVP, false, mvp); gl.uniform1f(u.uDash, st.dash);
       var aP = gl.getAttribLocation(pathProg.p, 'aP'), aS = gl.getAttribLocation(pathProg.p, 'aS');
       gl.bindBuffer(gl.ARRAY_BUFFER, p.buf);
       gl.enableVertexAttribArray(aP); gl.vertexAttribPointer(aP, 3, gl.FLOAT, false, 16, 0);
       gl.enableVertexAttribArray(aS); gl.vertexAttribPointer(aS, 1, gl.FLOAT, false, 16, 12);
-      gl.drawArrays(gl.POINTS, 0, p.n);
+      // dark outline first (same depth), then the line colour on top
+      gl.depthMask(false);   // outline is depth-tested against the map but must not hide the line itself
+      gl.uniform1f(u.uPx, (st.px + 4.2) * dpr); gl.uniform3fv(u.uCol, [0.063, 0.067, 0.075]); gl.drawArrays(gl.POINTS, 0, p.n);
+      gl.depthMask(true);
+      gl.uniform1f(u.uPx, st.px * dpr); gl.uniform3fv(u.uCol, st.col); gl.drawArrays(gl.POINTS, 0, p.n);
       gl.disableVertexAttribArray(aP); gl.disableVertexAttribArray(aS);
     });
     stats.lastDrawn = count; stats.frames++;
@@ -233,6 +250,28 @@
 
   // ------------------------------------------------------------------ controls
   var cutSlider = $('clip'), sizeSlider = $('size');
+  function colourMode() { return $('c-mono').checked ? 'mono' : 'height'; }
+  function turboJS(x) {  // same polynomial as the shader, for the legend
+    x = Math.min(1, Math.max(0, x));
+    var x2 = x * x, x3 = x2 * x, x4 = x2 * x2, x5 = x4 * x, c = function (v) { return Math.round(255 * Math.min(1, Math.max(0, v))); };
+    return 'rgb(' + c(0.13572138 + 4.61539260 * x - 42.66032258 * x2 + 132.13108234 * x3 - 152.94239396 * x4 + 59.28637943 * x5) + ',' +
+      c(0.09140261 + 2.19418839 * x + 4.84296658 * x2 - 14.18503333 * x3 + 4.27729857 * x4 + 2.82956604 * x5) + ',' +
+      c(0.10667330 + 12.64194608 * x - 60.58204836 * x2 + 110.36276771 * x3 - 89.90310912 * x4 + 27.34824973 * x5) + ')';
+  }
+  function updateLegend() {
+    if (!meta) return;
+    var mono = colourMode() === 'mono', stops = [], fl = meta.bounds.floor_z_p5, top = mono ? 7.5 : HGRAD_M, i;
+    if (mono) stops = ['#3C424A 0%', '#3C424A 2.4%', '#2E343B 2.4%', '#B8BDC7 60%', '#F5F7FA 100%'];
+    else for (i = 0; i <= 24; i++) stops.push(turboJS(TURBO_LO - (TURBO_LO - TURBO_HI) * i / 24) + ' ' + (100 * i / 24).toFixed(1) + '%');
+    var g = 'linear-gradient(90deg,' + stops.join(',') + ')';
+    $('legend-bar').style.background = g;
+    document.querySelector('.sw-map').style.background = g;
+    var ticks = '', step = mono ? 2.5 : 2;
+    for (var m = 0; m <= top + 1e-6; m += step) ticks += '<span style="left:' + (100 * m / top).toFixed(1) + '%">' + m + '</span>';
+    $('legend-ticks').innerHTML = ticks;
+    $('legend-note').textContent = 'Height above floor in metres (floor at map z ' + fl.toFixed(2) + ' m' + (mono ? '' : '; floor points dimmed') + '). Points above ' + top + ' m use the end colour; the height cut still hides points above it.';
+  }
+  ['c-height', 'c-mono'].forEach(function (id) { $(id).addEventListener('change', function () { updateLegend(); dirty = true; }); });
   function updateLabels() {
     if (!meta) return;
     $('o-clip').textContent = 'z ≤ ' + (cutSlider.value / 10).toFixed(1) + ' m (' + (cutSlider.value / 10 - meta.bounds.floor_z_p5).toFixed(1) + ' m above floor)';
@@ -324,6 +363,7 @@
   window.AERONEX_VIEWER = {
     camera: function () { return { tgt: cam.tgt.slice(), yaw: cam.yaw, pitch: cam.pitch, dist: cam.dist }; },
     stats: function () { return { points: N, drawn: stats.lastDrawn, frames: stats.frames, frameMs: frameMs, paths: Object.keys(paths).map(function (k) { return { id: k, poses: paths[k].poses, length_m: paths[k].length_m }; }) }; },
-    ready: function () { return !!home; }
+    ready: function () { return !!home; },
+    colourMode: function () { return colourMode(); }
   };
 })();
